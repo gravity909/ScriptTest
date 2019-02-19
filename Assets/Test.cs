@@ -30,10 +30,20 @@ public class Test : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Bossクラスの変数を宣言してインスタンスを代入
-        Boss magicattack = new Boss();
-        // 魔法攻撃用の関数を呼び出す
-        mp = magicattack.Magic(5,mp);
+        if (Input.GetKeyDown(KeyCode.Space))
+        { 
+            if (mp >= 5)
+            {
+                // Bossクラスの変数を宣言してインスタンスを代入
+                Boss magicattack = new Boss();
+                // 魔法攻撃用の関数を呼び出す
+                mp = magicattack.Magic(5, mp);
+            }
+            else
+            {
+            Debug.Log("MPが足りないため魔法が使えない。");
+            }
+        }
     }
 
     public class Boss
@@ -48,10 +58,6 @@ public class Test : MonoBehaviour
             if (mp > 0)
             {
                 Debug.Log("魔法攻撃をした。残りMPは" + mp + "。");
-            }
-            else
-            {
-                Debug.Log("MPが足りないため魔法が使えない。");
             }
 
             return mp;
